@@ -65,6 +65,7 @@ REGEX_NAME_PRIORITY_FORMATS=(
    '[^a-zA-Z]?wystawiono dnia[^a-zA-Z]'
    '[^a-zA-Z]?data dokumentu[^a-zA-Z]?'
    '[^a-zA-Z]?data faktury[^a-zA-Z]?'
+   '[^a-zA-Z]?faktura z dnia[^a-zA-Z]?'
    '[^a-zA-Z]?invoice date[^a-zA-Z]?'
    '[^a-zA-Z]?data dostawy lub świadczenia[^a-zA-Z]'
    '[^a-zA-Z]?data dostawy lub swiadczenia[^a-zA-Z]'
