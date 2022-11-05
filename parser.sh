@@ -24,10 +24,15 @@ REGEX_SELLER_FORMATS=(
    'seller'
 )
 
-# GNU date command name
+# pdfgrep command path
+# path can be found using 'which pdfgrep'
+PDFGREP_CMD='/opt/homebrew/bin/pdfgrep'
+
+# GNU date command path
 # in Linux it's simply 'date'
 # in MacOS the GNU date can be accessed as 'gdate'
-DATE_CMD='gdate'
+# path can be found using 'which gdate'
+DATE_CMD='/opt/homebrew/bin/gdate'
 
 # The selection mechanism for sell/buy invoice date selection
 # Accepted values:
@@ -139,7 +144,7 @@ function parse_row() {
    # arg $1: path to parsed file
    # arg $2: regex name format
 
-   local PDFGREP_RESULT=`pdfgrep -i "$2" "$1"`
+   local PDFGREP_RESULT=`$PDFGREP_CMD -i "$2" "$1"`
 
    if [[ ! -z "$PDFGREP_RESULT" ]]; then
       # skip if the current $REGEX_NAME_FORMAT not found using pdfgrep
@@ -164,7 +169,7 @@ function parse_column() {
    # arg $1: path to parsed file
    # arg $2: regex name format
 
-   local PDFGREP_RESULT=`pdfgrep -C 3 -i "$2" "$1"`
+   local PDFGREP_RESULT=`$PDFGREP_CMD -C 3 -i "$2" "$1"`
    
    if [[ ! -z "$PDFGREP_RESULT" ]]; then
       # skip if the current $REGEX_NAME_FORMAT not found using pdfgrep
@@ -190,7 +195,7 @@ fi
 INVOICE_TYPE=BUY
 
 for REGEX_SELLER_FORMAT in "${REGEX_SELLER_FORMATS[@]}"; do
-   PDFGREP_RESULT=`pdfgrep -i "[^a-zA-Z]$REGEX_SELLER_FORMAT[^a-zA-Z]" "$1" | grep -oi "$REGEX_NAME_ON_INVOICE"`
+   PDFGREP_RESULT=`$PDFGREP_CMD -i "[^a-zA-Z]$REGEX_SELLER_FORMAT[^a-zA-Z]" "$1" | grep -oi "$REGEX_NAME_ON_INVOICE"`
 
    if [[ ! -z "$PDFGREP_RESULT" ]]; then
       INVOICE_TYPE=SELL
@@ -200,7 +205,7 @@ done
 
 if [[ -z "$PDFGREP_RESULT" ]]; then
    for REGEX_SELLER_FORMAT in "${REGEX_SELLER_FORMATS[@]}"; do
-      PDFGREP_RESULT=`pdfgrep -C 3 -i "[^a-zA-Z]$REGEX_SELLER_FORMAT[^a-zA-Z]" "$1"`
+      PDFGREP_RESULT=`$PDFGREP_CMD -C 3 -i "[^a-zA-Z]$REGEX_SELLER_FORMAT[^a-zA-Z]" "$1"`
 
       # if space before $REGEX_SELLER_FORMAT -> remove leading spaces
       if grep -iq '[[:space:]]sprzedawca' <<< "$PDFGREP_RESULT"; then
