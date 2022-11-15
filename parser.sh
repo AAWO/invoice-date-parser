@@ -66,6 +66,7 @@ REGEX_DATE_FORMATS=(
 # in decreasing priority order
 REGEX_NAME_PRIORITY_FORMATS=(
    '[^a-zA-Z]?data wystawienia[^a-zA-Z]'
+   '[^a-zA-Z]?data wystawienia[^a-zA-Z]?'
    '[^a-zA-Z]?data [a-zA-Z[:space:]]+wystawienia[^a-zA-Z]'
    '[^a-zA-Z]?wystawiono dnia[^a-zA-Z]'
    '[^a-zA-Z]?data dokumentu[^a-zA-Z]?'
@@ -201,13 +202,24 @@ fi
 INVOICE_TYPE=BUY
 
 for REGEX_SELLER_FORMAT in "${REGEX_SELLER_FORMATS[@]}"; do
-   PDFGREP_RESULT=`$PDFGREP_CMD -i "[^a-zA-Z]$REGEX_SELLER_FORMAT[^a-zA-Z]" "$1" | grep -oi "$REGEX_NAME_ON_INVOICE"`
+   PDFGREP_RESULT=`$PDFGREP_CMD -i "[^a-zA-Z]$REGEX_SELLER_FORMAT[^a-zA-Z]" "$1" | sed 's/[ ][ ].*//g' | grep -oi "$REGEX_NAME_ON_INVOICE"`
 
    if [[ ! -z "$PDFGREP_RESULT" ]]; then
       INVOICE_TYPE=SELL
       break
    fi
 done
+
+if [[ ! -z "$PDFGREP_RESULT" ]]; then
+   for REGEX_SELLER_FORMAT in "${REGEX_SELLER_FORMATS[@]}"; do
+      PDFGREP_RESULT=`$PDFGREP_CMD -i "[^a-zA-Z]$REGEX_SELLER_FORMAT[^a-zA-Z]" "$1" | grep -oi "$REGEX_NAME_ON_INVOICE"`
+   
+      if [[ ! -z "$PDFGREP_RESULT" ]]; then
+         INVOICE_TYPE=SELL
+         break
+      fi
+   done
+fi
 
 if [[ -z "$PDFGREP_RESULT" ]]; then
    for REGEX_SELLER_FORMAT in "${REGEX_SELLER_FORMATS[@]}"; do
