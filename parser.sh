@@ -58,6 +58,7 @@ REGEX_DATE_FORMATS=(
    '[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}'
    '[0-9]{1,2}-(jan(uary)?|feb(ruary)?|mar(ch)?|apr(il)?|may|jun(e)?|jul(y)?|aug(ust)?|sep(tember)?|oct(ober)?|(nov|dec)(ember)?)-([0-9]{2}|\d{4})'
    '[0-9]{1,2}\s(jan(uary)?|feb(ruary)?|mar(ch)?|apr(il)?|may|jun(e)?|jul(y)?|aug(ust)?|sep(tember)?|oct(ober)?|(nov|dec)(ember)?)\s([0-9]{2}|\d{4})'
+   '(jan(uary)?|feb(ruary)?|mar(ch)?|apr(il)?|may|jun(e)?|jul(y)?|aug(ust)?|sep(tember)?|oct(ober)?|(nov|dec)(ember)?)\s[0-9]{1,2},\s([0-9]{2}|\d{4})'
    '[0-9]{1,2}-(sty(czeń|czen|cznia)?|lut(y|ego)?|mar(zec|ca)?|kwi(ecień|ecien|etnia)?|maj(a)?|cze(rwiec|rwca)?|lip(iec|ca)?|sie(rpień|rpien|rpnia)?|wrz(esień|esien|eśnia|esnia)?|pa(ź|z)(dziernik|dziernika)?|lis(topad|topada)?|gru(dzień|dzien|dnia)?)-([0-9]{2}|\d{4})'
    '[0-9]{1,2}\s(sty(czeń|czen|cznia)?|lut(y|ego)?|mar(zec|ca)?|kwi(ecień|ecien|etnia)?|maj(a)?|cze(rwiec|rwca)?|lip(iec|ca)?|sie(rpień|rpien|rpnia)?|wrz(esień|esien|eśnia|esnia)?|pa(ź|z)(dziernik|dziernika)?|lis(topad|topada)?|gru(dzień|dzien|dnia)?)\s([0-9]{2}|\d{4})'
 )
@@ -79,6 +80,7 @@ REGEX_NAME_PRIORITY_FORMATS=(
    '[^a-zA-Z]?data sprzedaży[^a-zA-Z]'
    '[^a-zA-Z]?data sprzedazy[^a-zA-Z]'
    '[^a-zA-Z]?data wykonania[^a-zA-Z]'
+   '[^a-zA-Z]?order created[^a-zA-Z]?\s*'
 )
 
 # Regex for date name detection - fallback (most general) names
@@ -87,6 +89,7 @@ REGEX_NAME_FALLBACK_PRIORITY_FORMATS=(
    '[^a-zA-Z]date[^a-zA-Z]'
    '[a-zA-Z], dnia[^a-zA-Z]'
    '[^a-zA-Z]data[^a-zA-Z]'
+   '[a-zA-Z], [^a-zA-Z]'
 )
 
 MONTH_NAMES=(
@@ -303,6 +306,12 @@ fi
 
 if [[ "$VERBOSE" == 1 ]]; then
    echo -e "\nFound dates:\n${RESULTS[@]}"
+   echo -e "\nInvoice type: $INVOICE_TYPE"
+   if [[ "$INVOICE_TYPE" = "SELL" ]]; then
+      echo "Sell invoice date selection: $SELL_INVOICE_DATE_SELECTION"
+   elif [[ "$INVOICE_TYPE" = "BUY" ]]; then
+      echo "Buy invoice date selection: $BUY_INVOICE_DATE_SELECTION"
+   fi
 fi
 
 if [ "$(count_unique "${RESULTS[@]}")" -eq 1 ] ; then
