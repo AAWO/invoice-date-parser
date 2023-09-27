@@ -66,30 +66,30 @@ REGEX_DATE_FORMATS=(
 # Regex for date name detection - standard names
 # in decreasing priority order
 REGEX_NAME_PRIORITY_FORMATS=(
-   '[^a-zA-Z]?data wystawienia[^a-zA-Z]'
-   '[^a-zA-Z]?data wystawienia[^a-zA-Z]?'
-   '[^a-zA-Z]?data [a-zA-Z[:space:]]+wystawienia[^a-zA-Z]'
-   '[^a-zA-Z]?wystawiono dnia[^a-zA-Z]'
-   '[^a-zA-Z]?data dokumentu[^a-zA-Z]?'
-   '[^a-zA-Z]?data faktury[^a-zA-Z]?'
-   '[^a-zA-Z]?data faktury/data dostawy[^a-zA-Z]'
-   '[^a-zA-Z]?faktura z dnia[^a-zA-Z]?'
-   '[^a-zA-Z]?invoice date[^a-zA-Z]?'
-   '[^a-zA-Z]?data dostawy lub świadczenia[^a-zA-Z]'
-   '[^a-zA-Z]?data dostawy lub swiadczenia[^a-zA-Z]'
-   '[^a-zA-Z]?data sprzedaży[^a-zA-Z]'
-   '[^a-zA-Z]?data sprzedazy[^a-zA-Z]'
-   '[^a-zA-Z]?data wykonania[^a-zA-Z]'
-   '[^a-zA-Z]?order created[^a-zA-Z]?\s*'
+   '[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]?data wystawienia[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]'
+   '[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]?data wystawienia[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]?'
+   '[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]?data [a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ[:space:]]+wystawienia[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]'
+   '[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]?wystawiono dnia[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]'
+   '[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]?data dokumentu[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]?'
+   '[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]?data faktury[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]?'
+   '[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]?data faktury/data dostawy[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]'
+   '[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]?faktura z dnia[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]?'
+   '[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]?invoice date[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]?'
+   '[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]?data dostawy lub świadczenia[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]'
+   '[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]?data dostawy lub swiadczenia[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]'
+   '[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]?data sprzedaży[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]'
+   '[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]?data sprzedazy[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]'
+   '[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]?data wykonania[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]'
+   '[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]?order created[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]?\s*'
 )
 
 # Regex for date name detection - fallback (most general) names
 # in decreasing priority order
 REGEX_NAME_FALLBACK_PRIORITY_FORMATS=(
-   '[^a-zA-Z]date[^a-zA-Z]'
-   '[a-zA-Z], dnia[^a-zA-Z]'
-   '[^a-zA-Z]data[^a-zA-Z]'
-   '[a-zA-Z], [^a-zA-Z]'
+   '[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]date[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]'
+   '[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ], dnia[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]'
+   '[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]data[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]'
+   '[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ], [^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]'
 )
 
 MONTH_NAMES=(
@@ -137,7 +137,7 @@ function format_date() {
                  | sed -E 's/(paź(dziernik|dziernika)?)/oct/g' \
                  | sed -E 's/(lis(topad|topada)?)/nov/g' \
                  | sed -E 's/(gru(dzień|dnia)?)/dec/g' \
-                 | sed 's/[^0-9a-zA-Z]/-/g'`
+                 | sed 's/[^0-9a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]/-/g'`
 
    local RES=`awk -F '-' -v par="${MONTH_NAMES[*]}" '{ n = split(par, a, " "); if ($2 ~ /^[0-9]+$/) { if (length($1)==4) printf("%02d-%s-%d\n", int($3), a[int($2)], int($1)); else printf("%02d-%s-%d\n", int($1), a[int($2)], int($3)); } else { if (length($1)==4) printf("%02d-%s-%d\n", int($3), tolower($2), int($1)); else printf("%02d-%s-%d\n", int($1), tolower($2), int($3)); }; exit }' <<< "$DATE_TMP"`
    echo "$RES"
@@ -206,7 +206,7 @@ fi
 INVOICE_TYPE=BUY
 
 for REGEX_SELLER_FORMAT in "${REGEX_SELLER_FORMATS[@]}"; do
-   PDFGREP_RESULT=`$PDFGREP_CMD -i "[^a-zA-Z]$REGEX_SELLER_FORMAT[^a-zA-Z]" "$1" | sed 's/[ ][ ].*//g' | grep -oi "$REGEX_NAME_ON_INVOICE"`
+   PDFGREP_RESULT=`$PDFGREP_CMD -i "[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]$REGEX_SELLER_FORMAT[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]" "$1" | sed 's/[ ][ ].*//g' | grep -oi "$REGEX_NAME_ON_INVOICE"`
 
    if [[ ! -z "$PDFGREP_RESULT" ]]; then
       INVOICE_TYPE=SELL
@@ -216,7 +216,7 @@ done
 
 if [[ ! -z "$PDFGREP_RESULT" ]]; then
    for REGEX_SELLER_FORMAT in "${REGEX_SELLER_FORMATS[@]}"; do
-      PDFGREP_RESULT=`$PDFGREP_CMD -i "[^a-zA-Z]$REGEX_SELLER_FORMAT[^a-zA-Z]" "$1" | grep -oi "$REGEX_NAME_ON_INVOICE"`
+      PDFGREP_RESULT=`$PDFGREP_CMD -i "[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]$REGEX_SELLER_FORMAT[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]" "$1" | grep -oi "$REGEX_NAME_ON_INVOICE"`
    
       if [[ ! -z "$PDFGREP_RESULT" ]]; then
          INVOICE_TYPE=SELL
@@ -227,7 +227,7 @@ fi
 
 if [[ -z "$PDFGREP_RESULT" ]]; then
    for REGEX_SELLER_FORMAT in "${REGEX_SELLER_FORMATS[@]}"; do
-      PDFGREP_RESULT=`$PDFGREP_CMD -C 3 -i "[^a-zA-Z]$REGEX_SELLER_FORMAT[^a-zA-Z]" "$1"`
+      PDFGREP_RESULT=`$PDFGREP_CMD -C 3 -i "[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]$REGEX_SELLER_FORMAT[^a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]" "$1"`
 
       # if space before $REGEX_SELLER_FORMAT -> remove leading spaces
       if grep -iq '[[:space:]]sprzedawca' <<< "$PDFGREP_RESULT"; then
